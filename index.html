@@ -1956,9 +1956,11 @@ function hud(){
  const timeCol=clock<=15&&Math.floor(t*6)%2===0?'#ff4d6d':'#fff2bd';
  label(String(Math.max(0,Math.ceil(clock))).padStart(2,'0'),384,y+34,36,timeCol,'center');
  label('1P',25,y-4,10,'#a5d9eb');label(mode==='cpu'?'CPU ('+cpuDiff.toUpperCase()+')':'2P',742,y-4,10,'#eda3ab','right');
+ // Align round markers with the inner ends of the health bars.
  for(let i=0;i<2;i++){
-  rect(122+i*15,y+26,10,10,i<p1.wins?'#ffdd59':'#3c384a');
-  rect(636-i*15,y+26,10,10,i<p2.wins?'#ffdd59':'#3c384a');
+  const markerSize=10,markerX=308+i*15;
+  rect(markerX,y+26,markerSize,markerSize,i<p1.wins?'#ffdd59':'#3c384a');
+  rect(W-markerX-markerSize,y+26,markerSize,markerSize,i<p2.wins?'#ffdd59':'#3c384a');
  }
  for(const p of [p1,p2]){
   const x=p.id===0?(landscapeControls?64:28):(landscapeControls?540:580);
